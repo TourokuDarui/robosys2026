@@ -29,15 +29,17 @@
 ## インストール方法
 
 ### 1. リポジトリをクローンします
-```bash
 git clone [https://github.com/TourokuDarui/robosys2026.git](https://github.com/TourokuDarui/robosys2026.git)
+```bash
 cd robosys2026
 ```
 　　
 ### 2. 依存ライブラリをインストールします
 ```bash
 pip install -r requirements.txt
+```
 ※ externally-managed-environment エラーが出る場合は、以下を実行してください
+```bash
 pip install --user --break-system-packages -r requirements.txt
 ```
 
@@ -52,7 +54,6 @@ cp kryptos ~/.local/bin/kryptos
 ## 使用例
 
 ### 1. 標準入力（パイプ）から暗号化・復号する
-
 暗号化（デフォルトのシフト数: 3）
 ```bash
 echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos
@@ -62,11 +63,10 @@ echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos
 パイプでつないで復号（-d オプション）
 ```bash
 echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos | kryptos -d
-#出力例: ashitano15jinihimitsunobashodeaou。 
+#出力例: ashitano15jinitoukyouekidemachiawaseshimashou。 
 ```
 
 ### 2. シフト数を指定する（-s / --shift）
-
 10文字ずらして暗号化
 ```bash
 echo "Hello, WSL!" | kryptos -s 10
@@ -78,7 +78,6 @@ echo "Rovvy, GCV!" | kryptos -d -s 10
 ```
 
 ### 3.ファイルを指定して変換する
-
 ファイルを暗号化して別ファイルに保存
 ```bash
 kryptos input.txt > encrypted.txt
@@ -103,7 +102,7 @@ kryptos -d encrypted.txt
 
 - 本ツールは学習および古典暗号の体験を目的としています。機密情報の保護には使用しないでください。
 
-## 著作権とLICESE
+## 著作権とLICENSE
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
 - © 2026 Taisei Yamazaki
 
