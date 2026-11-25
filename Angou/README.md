@@ -32,51 +32,67 @@
     ```bash
     git clone [https://github.com/TourokuDarui/robosys2026.git](https://github.com/TourokuDarui/robosys2026.git)
     cd robosys2026
-
+　　```
 - 2. 依存ライブラリをインストールします
+    ```bash
     pip install -r requirements.txt
     ※ Ubuntu 23.04以降などで externally-managed-environment エラーが出る場合は、以下を実行してください
     pip install --user --break-system-packages -r requirements.txt
+    ```
 
 - 3.実行権限を付与し、パスの通ったディレクトリ（~/.local/bin など）に配置します
+    ```bash
     cd Angou
     chmod +x kryptos
     mkdir -p ~/.local/bin
     cp kryptos ~/.local/bin/kryptos
-
+    ```
 ##使用例
 
 - 1. 標準入力（パイプ）から暗号化・復号する
 
- 暗号化（デフォルトのシフト数: 3）
+暗号化（デフォルトのシフト数: 3）
+```bash
 echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos
- 出力例: dvklwdqr15mlqlwrxnbxhnlghpdfkldzdvhvklpdvkbrx。
+#出力例: dvklwdqr15mlqlwrxnbxhnlghpdfkldzdvhvklpdvkbrx。
+```
 
- パイプでつないで復号（-d オプション）
+パイプでつないで復号（-d オプション）
+```bash
 echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos | kryptos -d
- 出力例: ashitano15jinihimitsunobashodeaou。 
+#出力例: ashitano15jinihimitsunobashodeaou。 
+```
 
 - 2. シフト数を指定する（-s / --shift）
 
- 10文字ずらして暗号化
+10文字ずらして暗号化
+```bash
 echo "Hello, WSL!" | kryptos -s 10
+```
 
- 10文字ずらした暗号を復号
+10文字ずらした暗号を復号
+```bash
 echo "Rovvy, GCV!" | kryptos -d -s 10
+```
 
 - 3.ファイルを指定して変換する
 
- ファイルを暗号化して別ファイルに保存
+ファイルを暗号化して別ファイルに保存
+```bash
 kryptos input.txt > encrypted.txt
+```
 
- 暗号化ファイルを復号して画面に表示
+暗号化ファイルを復号して画面に表示
+```bash
 kryptos -d encrypted.txt
+```
 
-##オプション,説明
-file,入力ファイルのパス（省略時は標準入力から読み込みます）
-"-s, --shift",ずらす文字数（デフォルト: 3）
-"-d, --decrypt",復号モードで実行します
-"-h, --help",ヘルプメッセージを表示します
+| オプション | 説明 |
+|---|---|---|---|
+|file|入力ファイルのパス（省略時は標準入力から読み込みます）|
+|-s, --shift|ずらす文字数（デフォルト: 3）|
+|-d, --decrypt|復号モードで実行します|
+|-h, --help|ヘルプメッセージを表示します|
 
 ##仕様・注意事項
 - 暗号化の際に日本語を一度ローマ字へ変換するため、復号後のテキストは元の漢字・かなではなくローマ字表記になります。
