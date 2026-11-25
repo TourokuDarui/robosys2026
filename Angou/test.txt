@@ -1,1 +1,0 @@
-Hello, WSL World! Secret: 1234

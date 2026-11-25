@@ -1,16 +1,15 @@
 #!/usr/bin/env python3
+# SPDX-FileCopyrightText: 2026 Taisei Yamazaki
+# SPDX-License-Identifier: BSD-3-Clause
+
 import argparse
 import sys
-
-#漢字も読むための追加
 import pykakasi
 
 def kana_to_romaji(text):
     kks = pykakasi.kakasi()
     result = kks.convert(text)
     return ''.join(item['hepburn'] for item in result)
-
-#ここまで追加
 
 def caesar_cipher(text, shift):
     result = []
@@ -24,7 +23,7 @@ def caesar_cipher(text, shift):
     return ''.join(result)
 
 def main():
-    parser = argparse.ArgumentParser(description='日本語と英数字の混じったテキストをローマ字のテキスト変換し、シーザー暗号でさらに変換します')
+    parser = argparse.ArgumentParser(description='日本語と英数字の混じったテキストをローマ字のテキスト変換し、シーザー暗号でさらに変換することができるコマンドです。')
     parser.add_argument('file', nargs='?', help='入力ファイル（省略時は標準入力）')
     parser.add_argument('-s', '--shift', type=int, default=3, help='ずらす文字数（初期値: 3）')
     parser.add_argument('-d', '--decrypt', action='store_true', help='復号（元に戻す）モード')
@@ -38,7 +37,6 @@ def main():
     else:
         content = sys.stdin.read()
 
-    #sys.stdout.write(caesar_cipher(content, shift))
     for line in content.splitlines(keepends=True):
         stripped = line.rstrip('\r\n')
         newline = line[len(stripped):]
