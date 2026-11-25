@@ -45,7 +45,6 @@ pip install --user --break-system-packages -r requirements.txt
 
 ### 3.実行権限を付与し、パスの通ったディレクトリ（~/.local/bin など）に配置します
 ```bash
-cd Angou
 chmod +x kryptos
 mkdir -p ~/.local/bin
 cp kryptos ~/.local/bin/kryptos
@@ -100,10 +99,15 @@ kryptos -d encrypted.txt
 
 - アルファベット以外の文字（数字・記号・句読点・改行）は変換されずそのまま保持されます。
 
+- 漢字の読み変換および句読点の変換（「。」「、」→「.」「,」）は pykakasi の変換仕様に準拠します（例：「15時」は 15toki として変換されます）。
+
 - 本ツールは学習および古典暗号の体験を目的としています。機密情報の保護には使用しないでください。
 
 ## 著作権とLICENSE
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
+- このパッケージは、aaa由来のコード（© 2025 Hoge Fuge）を利用しています。
+- このパッケージのコードの一部は、下記のスライド（CC BY-SA 4.0 by Taro Suzuki）のものを、本人の許可を得て自身の著作としたものです。
+- https://github.com/tarolab-cit/lectures/tree/main/robosys2026
 - © 2026 Taisei Yamazaki
 
 

@@ -10,6 +10,8 @@ def kana_to_romaji(text):
     kks = pykakasi.kakasi()
     result = kks.convert(text)
     return ''.join(item['hepburn'] for item in result)
+    #romaji = ''.join(item['hepburn'] for item in result)
+    #return romaji.replace('.', '。').replace(',', '、')
 
 def caesar_cipher(text, shift):
     result = []

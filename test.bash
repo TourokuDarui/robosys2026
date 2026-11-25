@@ -17,10 +17,10 @@ out=$(echo "Khoor, ZVO!" | ./kryptos -d)
 [ "${out}" = "Hello, WSL!" ] || ng "$LINENO"
 
 out=$(echo "明日の15時に東京駅で待ち合わせしましょう。" | ./kryptos)
-[ "${out}" = "dvklwdqr15mlqlwrxnbxhnlghpdfkldzdvhvklpdvkbrx。" ] || ng "$LINENO"
+[ "${out}" = "dvklwdqr15wrnlqlwrxnbrxhnlghpdfkldzdvhvklpdvkrx." ] || ng "$LINENO"
 
 out=$(echo "明日の15時に東京駅で待ち合わせしましょう。" | ./kryptos | ./kryptos -d)
-[ "${out}" = "ashitano15jinitoukyouekidemachiawaseshimashou。" ] || ng "$LINENO"
+[ "${out}" = "ashitano15tokinitoukyouekidemachiawaseshimashou." ] || ng "$LINENO"
 
 out=$(echo "Test Message 123" | ./kryptos -s 10 | ./kryptos -d -s 10)
 [ "${out}" = "Test Message 123" ] || ng "$LINENO"
