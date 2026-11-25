@@ -39,11 +39,15 @@ def main():
         content = sys.stdin.read()
 
     #sys.stdout.write(caesar_cipher(content, shift))
+    for line in content.splitlines(keepends=True):
+        stripped = line.rstrip('\r\n')
+        newline = line[len(stripped):]
 
-    if not args.decrypt:
-        content = kana_to_romaji(content)
+        if not args.decrypt:
+            stripped = kana_to_romaji(stripped)
 
-    sys.stdout.write(caesar_cipher(content, shift))
+        sys.stdout.write(caesar_cipher(stripped, shift) + newline)
+
 
 if __name__ == '__main__':
     main()
