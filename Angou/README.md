@@ -28,19 +28,19 @@
 
 ## インストール方法
 
-- 1. リポジトリをクローンします
+### 1. リポジトリをクローンします
     ```bash
     git clone [https://github.com/TourokuDarui/robosys2026.git](https://github.com/TourokuDarui/robosys2026.git)
     cd robosys2026
 　　```
-- 2. 依存ライブラリをインストールします
+### 2. 依存ライブラリをインストールします
     ```bash
     pip install -r requirements.txt
     ※ Ubuntu 23.04以降などで externally-managed-environment エラーが出る場合は、以下を実行してください
     pip install --user --break-system-packages -r requirements.txt
     ```
 
-- 3.実行権限を付与し、パスの通ったディレクトリ（~/.local/bin など）に配置します
+### 3.実行権限を付与し、パスの通ったディレクトリ（~/.local/bin など）に配置します
     ```bash
     cd Angou
     chmod +x kryptos
@@ -49,7 +49,7 @@
     ```
 ##使用例
 
-- 1. 標準入力（パイプ）から暗号化・復号する
+### 1. 標準入力（パイプ）から暗号化・復号する
 
 暗号化（デフォルトのシフト数: 3）
 ```bash
@@ -63,7 +63,7 @@ echo "明日の15時に東京駅で待ち合わせしましょう。" | kryptos 
 #出力例: ashitano15jinihimitsunobashodeaou。 
 ```
 
-- 2. シフト数を指定する（-s / --shift）
+### 2. シフト数を指定する（-s / --shift）
 
 10文字ずらして暗号化
 ```bash
@@ -75,7 +75,7 @@ echo "Hello, WSL!" | kryptos -s 10
 echo "Rovvy, GCV!" | kryptos -d -s 10
 ```
 
-- 3.ファイルを指定して変換する
+### 3.ファイルを指定して変換する
 
 ファイルを暗号化して別ファイルに保存
 ```bash
@@ -88,7 +88,7 @@ kryptos -d encrypted.txt
 ```
 
 | オプション | 説明 |
-|---|---|---|---|
+|:---:|:---:|
 |file|入力ファイルのパス（省略時は標準入力から読み込みます）|
 |-s, --shift|ずらす文字数（デフォルト: 3）|
 |-d, --decrypt|復号モードで実行します|
@@ -103,13 +103,7 @@ kryptos -d encrypted.txt
 
 ## 著作権とLICESE
 - このソフトウェアパッケージは、3条項BSDライセンスの下、再頒布および使用が許可されます。
-- このパッケージは、aaa由来のコード（© 2025 Hoge Fuge）を利用しています。
-- このパッケージのコードは、下記のスライド（CC BY-SA 4.0 by Taro Suzuki）のものを、
-本人の許可を得て自身の著作としたものです。
-- 本人の許可を得て自身の著作としたものです。
-- https://github.com/tarolab-cit/lectures/tree/main/robosys2026
 - © 2026 Taisei Yamazaki
-
 
 
 
