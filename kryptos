@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import argparse
+import sys
+
+def caesar_cipher(text, shift):
+    result = []
+    for char in text:
+        if 'A' <= char <= 'Z':
+            result.append(chr((ord(char) - ord('A') + shift) % 26 + ord('A')))
+        elif 'a' <= char <= 'z':
+            result.append(chr((ord(char) - ord('a') + shift) % 26 + ord('a')))
+        else:
+            result.append(char)
+    return ''.join(result)
+
+def main():
+    parser = argparse.ArgumentParser(description='シーザー暗号でテキストを変換します')
+    parser.add_argument('file', nargs='?', help='入力ファイル（省略時は標準入力）')
+    parser.add_argument('-s', '--shift', type=int, default=3, help='ずらす文字数（初期値: 3）')
+    parser.add_argument('-d', '--decrypt', action='store_true', help='復号（元に戻す）モード')
+    args = parser.parse_args()
+
+    shift = -args.shift if args.decrypt else args.shift
+
+    if args.file:
+        with open(args.file, 'r', encoding='utf-8') as f:
+            content = f.read()
+    else:
+        content = sys.stdin.read()
+
+    sys.stdout.write(caesar_cipher(content, shift))
+
+if __name__ == '__main__':
+    main()
