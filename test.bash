@@ -1,30 +1,43 @@
-#!/bin/bash
+#!/bin/bash -xv
 # SPDX-FileCopyrightText: 2026 Taisei Yamazaki
 # SPDX-License-Identifier: BSD-3-Clause
 
-ng () {                               # 関数ngの定義（P18と同じ）
-         echo ${1}行目のテスト失敗
-         res=1                          # 失敗したことを記録
+ng () {
+        echo ${1}行目のテスト失敗
+        res=1
 }
 
-res=0                                  # 0: 失敗なし（ngが呼ばれると1になる）
+res=0
 
 ### NORMAL INPUT ###
-out=$(seq 5 | ./plus)                  # 表の1行目: plusの出力を変数outに記録
-[ "$?" = 0 ]      || ng "$LINENO"
-[ "${out}" = 15 ] || ng "$LINENO"      # 期待する出力（15）でなければngを呼び出す
+out=$(echo "Hello, WSL!" | ./kryptos)
+[ "${out}" = "Khoor, ZVO!" ] || ng "$LINENO"
+
+out=$(echo "Khoor, ZVO!" | ./kryptos -d)
+[ "${out}" = "Hello, WSL!" ] || ng "$LINENO"
+
+out=$(echo "明日の15時に東京駅で待ち合わせしましょう。" | ./kryptos)
+[ "${out}" = "dvklwdqr15mlqlwrxnbxhnlghpdfkldzdvhvklpdvkbrx。" ] || ng "$LINENO"
+
+out=$(echo "明日の15時に東京駅で待ち合わせしましょう。" | ./kryptos | ./kryptos -d)
+[ "${out}" = "ashitano15jinitoukyouekidemachiawaseshimashou。" ] || ng "$LINENO"
+
+out=$(echo "Test Message 123" | ./kryptos -s 10 | ./kryptos -d -s 10)
+[ "${out}" = "Test Message 123" ] || ng "$LINENO"
+
+tmpfile=$(mktemp)
+echo "Secret File Content" > "${tmpfile}"
+out=$(./kryptos "${tmpfile}" | ./kryptos -d)
+[ "${out}" = "Secret File Content" ] || ng "$LINENO"
+rm -f "${tmpfile}"
 
 ### STRANGE INPUT ###
-out=$(echo あ | ./plus)           #計算できない値を入力してみる
-[ "$?" = 1 ]      || ng "$LINENO" #終了ステータスが1なのを確認
-[ "${out}" = "" ] || ng "$LINENO" #上の行と入れ替えるとダメ（なぜ？）
+./kryptos no_such_file_99999.txt 2>/dev/null
+[ "$?" -ne 0 ] || ng "$LINENO"
 
-out=$(echo | ./plus)              #なにも入力しない
-[ "$?" = 1 ]      || ng "$LINENO" #これも異常終了する
-[ "${out}" = "" ] || ng "$LINENO"
+echo "abc" | ./kryptos -s not_a_number 2>/dev/null
+[ "$?" -ne 0 ] || ng "$LINENO"
 
-[ "${res}" = 0 ] && echo OK            # 通ったのが（人間に）分かるように表示
+[ "${res}" = 0 ] && echo "OK"
 exit $res
-
-
 
