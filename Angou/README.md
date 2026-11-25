@@ -29,25 +29,25 @@
 ## インストール方法
 
 ### 1. リポジトリをクローンします
-    ```bash
-    git clone [https://github.com/TourokuDarui/robosys2026.git](https://github.com/TourokuDarui/robosys2026.git)
-    cd robosys2026
-    ```
+```bash
+git clone [https://github.com/TourokuDarui/robosys2026.git](https://github.com/TourokuDarui/robosys2026.git)
+cd robosys2026
+```
 　　
 ### 2. 依存ライブラリをインストールします
-    ```bash
-    pip install -r requirements.txt
-    ※ Ubuntu 23.04以降などで externally-managed-environment エラーが出る場合は、以下を実行してください
-    pip install --user --break-system-packages -r requirements.txt
-    ```
+```bash
+pip install -r requirements.txt
+※ externally-managed-environment エラーが出る場合は、以下を実行してください
+pip install --user --break-system-packages -r requirements.txt
+```
 
 ### 3.実行権限を付与し、パスの通ったディレクトリ（~/.local/bin など）に配置します
-    ```bash
-    cd Angou
-    chmod +x kryptos
-    mkdir -p ~/.local/bin
-    cp kryptos ~/.local/bin/kryptos
-    ```
+```bash
+cd Angou
+chmod +x kryptos
+mkdir -p ~/.local/bin
+cp kryptos ~/.local/bin/kryptos
+```
 
 ##使用例
 
